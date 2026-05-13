@@ -1,0 +1,15 @@
+:root {
+    /* Paleta Institucional UMG */
+    --umg-blue: #002b5c;       /* Azul marino principal */
+    --umg-blue-light: #004085; /* Azul secundario para gradientes y hover */
+    --umg-gold: #f2a900;       /* Dorado/Amarillo acento */
+    --umg-gold-hover: #d99700;
+    
+    /* Colores de UI Moderna */
+    --bg-color: #f4f7f6;       /* Fondo de la página */
+    --panel-bg: #ffffff;       /* Fondo de los paneles blancos */
+    --text-main: #2d3436;      /* Color de texto principal */
+    --text-muted: #636e72;     /* Color de texto secundario (gris) */
+    --border-color: #e1e5ee;   /* Color de los bordes de tablas y paneles */
+    --success: #27ae60;        /* Verde para mensajes de éxito y gráfica MSE */
+}

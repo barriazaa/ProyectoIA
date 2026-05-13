@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Machine Learning | UMG</title>
+    
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main class="main-container">
+        
+        <div id="controls-placeholder"></div>
+
+        <section class="panel">
+            <div class="charts-container">
+                <div>
+                    <h4 class="chart-title">Ajuste de la Recta de Regresión</h4>
+                    <div class="chart-wrapper">
+                        <canvas id="chart-regression"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="chart-title">Curva de Descenso del Costo (MSE)</h4>
+                    <div class="chart-wrapper">
+                        <canvas id="chart-mse"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-info">
+                <strong>Análisis en Tiempo Real:</strong> <br>
+                A la espera de iniciar el entrenamiento. Ingresa puntos y presiona "Paso a Paso" para ver la matemática en acción.
+            </div>
+        </section>
+
+        <aside class="panel">
+            <h3>Asistente IA Educativo</h3>
+            <div class="chat-area">
+                </div>
+            <div class="chat-input-group">
+                <input type="text" placeholder="Pregunta sobre el modelo...">
+                <button class="btn btn-step" style="width: auto; margin:0; padding: 0 20px;">➔</button>
+            </div>
+            <div class="connection-status">
+                Conexión: <span id="status-dot">●</span> Activa (Ollama Local)
+            </div>
+        </aside>
+
+    </main>
+
+    <script src="js/components.js"></script> <script src="js/math.js"></script>       <script src="js/ui.js"></script>         <script src="js/chat.js"></script>       </body>
+</html>
