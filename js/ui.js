@@ -55,6 +55,11 @@ function ejecutarIteracion() {
     // Lógica matemática
     calcularPredicciones();
     let mseActual = calcularErroresYModelo();
+
+    // Mostrar el Error del Modelo en el pie de la tabla
+    document.getElementById('data-table-foot').style.display = 'table-footer-group';
+    document.getElementById('mse-table-display').innerText = mseActual.toFixed(4);
+
     let gradientes = calcularGradientes();
     actualizarParametros(gradientes);
     
@@ -76,8 +81,20 @@ function ejecutarIteracion() {
 function actualizarTabla() {
     let tbody = document.getElementById('data-table-body');
     tbody.innerHTML = ''; 
+    
     dataset.forEach(dato => {
-        tbody.innerHTML += `<tr><td>${dato.n}</td><td>${dato.x}</td><td>${dato.y}</td></tr>`;
+        let y_pred_format = dato.y_pred !== 0 ? dato.y_pred.toFixed(2) : '0.00';
+        let error_format = dato.error !== 0 ? dato.error.toFixed(2) : '0.00';
+        let error_sq_format = dato.error_sq !== 0 ? dato.error_sq.toFixed(2) : '0.00';
+
+        tbody.innerHTML += `<tr>
+            <td>${dato.n}</td>
+            <td>${dato.x}</td>
+            <td>${dato.y}</td>
+            <td style="color: #002b5c; font-weight: 600;">${y_pred_format}</td>
+            <td style="color: #e74c3c;">${error_format}</td>
+            <td style="color: #27ae60;">${error_sq_format}</td>
+        </tr>`;
     });
 }
 

@@ -11,13 +11,19 @@
 </div>
 <button class="btn btn-add" id="btn-add">Añadir Punto</button>
 
-<div class="table-container" style="max-height: 150px; overflow-y: auto;">
+<div class="table-container" style="max-height: 250px; overflow-y: auto;">
     <table>
         <thead>
-            <tr><th>ID</th><th>X</th><th>Y</th></tr>
+            <tr><th>N</th><th>X</th><th>Y</th><th>Y^</th><th>Error</th><th>Error²</th></tr>
         </thead>
         <tbody id="data-table-body">
-            </tbody>
+        </tbody>
+        <tfoot id="data-table-foot" style="display: none; background: #f8fafc; font-weight: bold; border-top: 2px solid var(--border-color);">
+            <tr>
+                <td colspan="5" style="text-align: right; padding-right: 15px; color: var(--umg-blue);">Error del Modelo (MSE):</td>
+                <td id="mse-table-display" style="color: #e74c3c;">0.00</td>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
