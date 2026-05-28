@@ -48,3 +48,30 @@
     background-color: #219653;
     box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
 }
+/* ============================= */
+/* Botón del Modal */
+/* ============================= */
+
+.app-modal-btn {
+    display: bllock;
+    margin: 0 auto;
+    background-color: var(--umg-blue);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 43, 92, 0.2);
+}
+
+.app-modal-btn:hover {
+    background-color: var(--bg-color);
+    box-shadow: 0 6px 20px rgba(0, 43, 92, 0.3);
+}
+
+.app-modal-btn:active {
+    transform: translateY(2px);
+}

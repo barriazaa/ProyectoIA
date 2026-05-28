@@ -10,7 +10,21 @@ let iteracionActual = 0;
 document.addEventListener("DOMContentLoaded", () => {
     inicializarGraficas();
 });
+function showAppModal(title, message) {
+    const modal = document.getElementById('appModal');
+    const modalTitle = document.getElementById('appModalTitle');
+    const modalMessage = document.getElementById('appModalMessage');
 
+    if (!modal || !modalTitle || !modalMessage) {
+        console.error('No se encontró el modal en el HTML.');
+        return;
+    }
+
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+
+    modal.classList.remove('hidden');
+}
 function asignarEventos() {
     // Botón "Añadir Punto"
     document.getElementById('btn-add').addEventListener('click', () => {
@@ -28,13 +42,25 @@ function asignarEventos() {
 
     // Botón "Paso a Paso"
     document.getElementById('btn-step').addEventListener('click', () => {
-        if (dataset.length < 2) return alert("Ingresa al menos 2 puntos.");
+        if (dataset.length < 2) { 
+            showAppModal(
+                'Datos insuficientes',
+                'Por favor, ingresa al menos 2 puntos para realizar el entrenamiento.'
+            );
+            return;
+        }
         ejecutarIteracion();
     });
 
     // Botón "Entrenamiento Completo"
     document.getElementById('btn-full').addEventListener('click', () => {
-        if (dataset.length < 2) return alert("Ingresa al menos 2 puntos.");
+        if (dataset.length < 2) { 
+            showAppModal(
+                'Datos insuficientes',
+                'Por favor, ingresa al menos 2 puntos para realizar el entrenamiento.'
+            );
+            return;
+        }
         let iteracionesMax = parseInt(document.getElementById('input-iterations').value);
         for (let i = 0; i < iteracionesMax; i++) {
             ejecutarIteracion();
@@ -139,3 +165,53 @@ function actualizarGraficaMSE() {
     mseChart.data.datasets[0].data = historialMSE;
     mseChart.update();
 }
+
+// ==========================================
+// Modal global reutilizable
+// ==========================================
+
+function showAppModal(title, message) {
+    const modal = document.getElementById('appModal');
+    const modalTitle = document.getElementById('appModalTitle');
+    const modalMessage = document.getElementById('appModalMessage');
+
+    if (!modal || !modalTitle || !modalMessage) {
+        console.error('No se encontró el modal en el HTML.');
+        return;
+    }
+
+    modalTitle.textContent = title;
+    modalMessage.textContent = message;
+
+    modal.classList.remove('hidden');
+}
+
+function closeAppModal() {
+    const modal = document.getElementById('appModal');
+
+    if (modal) {
+        modal.classList.add('hidden');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const btnClose = document.getElementById('appModalClose');
+    const btnOk = document.getElementById('appModalOk');
+    const modal = document.getElementById('appModal');
+
+    if (btnClose) {
+        btnClose.addEventListener('click', closeAppModal);
+    }
+
+    if (btnOk) {
+        btnOk.addEventListener('click', closeAppModal);
+    }
+
+    if (modal) {
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeAppModal();
+            }
+        });
+    }
+});
