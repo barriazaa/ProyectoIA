@@ -1,36 +1,79 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-color);
     color: var(--text-main);
-    margin: 0; padding: 20px;
-    height: 100vh;
+    margin: 0;
+    padding: clamp(12px, 2vw, 20px);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    box-sizing: border-box;
+    overflow-x: hidden;
 }
 
+/* Mobile first */
 .main-container {
+    width: 100%;
     display: grid;
-    grid-template-columns: 320px 1fr 320px;
-    gap: 24px;
+    grid-template-columns: 1fr;
+    gap: 16px;
     flex-grow: 1;
-    overflow: hidden;
+    overflow: visible;
 }
 
+/* Tablet */
+@media (min-width: 768px) {
+    .main-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .main-container .panel:nth-child(2) {
+        grid-column: 1 / -1;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 1200px) {
+    .main-container {
+        grid-template-columns: minmax(280px, 320px) minmax(0, 1fr) minmax(280px, 320px);
+        gap: 24px;
+        overflow: hidden;
+    }
+
+    .main-container .panel:nth-child(2) {
+        grid-column: auto;
+    }
+}
 .panel {
     background-color: var(--panel-bg);
-    padding: 25px;
+    padding: clamp(16px, 2vw, 25px);
     border-radius: 16px;
     box-shadow: 0 8px 30px rgba(0,0,0,0.04);
     border: 1px solid rgba(0,0,0,0.02);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
+/* En celular no forzamos scroll interno raro */
+@media (max-width: 767px) {
+    .panel {
+        overflow-y: visible;
+    }
+}
 h3 { 
     margin-top: 0; font-size: 1.15rem; color: var(--umg-blue); 
     display: flex; align-items: center; gap: 8px; margin-bottom: 20px; 
@@ -56,8 +99,22 @@ input:focus { border-color: var(--umg-gold); background-color: #fff; outline: no
 .chart-wrapper { background: #fff; border: 1.5px dashed var(--border-color); border-radius: 12px; height: 230px; position: relative; }
 .chart-title { margin:0 0 10px 0; color: var(--text-muted); font-size: 14px; font-weight: 600; }
 
-.table-container { margin-top: 15px; border-radius: 10px; border: 1px solid var(--border-color); overflow: hidden; }
-table { width:100%; font-size: 13px; text-align: center; border-collapse: collapse; }
+.table-container {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 560px;
+    font-size: 13px;
+    text-align: center;
+    border-collapse: collapse;
+}
 thead { background: #f8fafc; color: var(--umg-blue); }
 th, td { padding: 10px; border-bottom: 1px solid var(--border-color); }
 
@@ -161,4 +218,104 @@ th, td { padding: 10px; border-bottom: 1px solid var(--border-color); }
         opacity: 1;
         transform: translateY(0) scale(1);
     }
+}
+.calculos-container {
+    margin-top: 20px;
+    background: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.calculos-output {
+    max-height: 350px;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    border: 1px solid var(--border-color);
+}
+
+.calculo-item {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-left: 4px solid var(--umg-gold);
+    background: #ffffff;
+    border-radius: 8px;
+}
+
+.calculo-item strong {
+    color: var(--umg-blue);
+}
+
+.formula {
+    display: block;
+    margin-top: 6px;
+    padding: 8px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    font-family: Consolas, monospace;
+    overflow-x: auto;
+}
+.tabla-modelo-container {
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.table-container {
+    width: 100%;
+    max-height: 280px;
+    overflow-x: auto;
+    overflow-y: auto;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+}
+
+.table-container table {
+    width: 100%;
+    min-width: 620px;
+    border-collapse: collapse;
+    font-size: 13px;
+    text-align: center;
+}
+
+.table-container thead {
+    background: #f8fafc;
+    color: var(--umg-blue);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.table-container th,
+.table-container td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+#data-table-foot {
+    display: none;
+    background: #f8fafc;
+    font-weight: bold;
+    border-top: 2px solid var(--border-color);
+}
+
+.mse-label {
+    text-align: right;
+    padding-right: 15px;
+    color: var(--umg-blue);
+}
+
+.mse-value {
+    color: #e74c3c;
+}
+.section-divider {
+    height: 1px;
+    margin: 22px 0 18px;
+    background: transparent;
 }

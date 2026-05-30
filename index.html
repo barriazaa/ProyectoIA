@@ -16,45 +16,95 @@
     <div id="header-placeholder"></div>
 
     <main class="main-container">
-        
-        <div id="controls-placeholder"></div>
 
-        <section class="panel">
-            <div class="charts-container">
-                <div>
-                    <h4 class="chart-title">Ajuste de la Recta de Regresión</h4>
-                    <div class="chart-wrapper">
-                        <canvas id="chart-regression"></canvas>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="chart-title">Curva de Descenso del Costo (MSE)</h4>
-                    <div class="chart-wrapper">
-                        <canvas id="chart-mse"></canvas>
-                    </div>
+    <!-- Panel izquierdo: controles -->
+    <aside id="controls-placeholder" class="panel"></aside>
+
+    <!-- Panel central: gráficas y cálculos -->
+    <section class="panel main-panel">
+
+        <div class="charts-container">
+
+            <div class="chart-block">
+                <h4 class="chart-title">Ajuste de la Recta de Regresión</h4>
+                <div class="chart-wrapper">
+                    <canvas id="chart-regression"></canvas>
                 </div>
             </div>
 
-            <div class="step-info">
-                <strong>Análisis en Tiempo Real:</strong> <br>
-                A la espera de iniciar el entrenamiento. Ingresa puntos y presiona "Paso a Paso" para ver la matemática en acción.
-            </div>
-        </section>
-
-        <aside class="panel">
-            <h3>Asistente IA Educativo</h3>
-            <div class="chat-area">
+            <div class="chart-block">
+                <h4 class="chart-title">Curva de Descenso del Costo (MSE)</h4>
+                <div class="chart-wrapper">
+                    <canvas id="chart-mse"></canvas>
                 </div>
-            <div class="chat-input-group">
-                <input type="text" placeholder="Pregunta sobre el modelo...">
-                <button class="btn btn-step" style="width: auto; margin:0; padding: 0 20px;">➔</button>
             </div>
-            <div class="connection-status">
-                Conexión: <span id="status-dot">●</span> Activa (Ollama Local)
-            </div>
-        </aside>
 
-    </main>
+        </div>
+        <div class="tabla-modelo-container">
+    <h3>3. Tabla de Cálculos</h3>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>N</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Ŷ</th>
+                    <th>Error</th>
+                    <th>Error²</th>
+                </tr>
+            </thead>
+
+            <tbody id="data-table-body">
+            </tbody>
+
+            <tfoot id="data-table-foot">
+                <tr>
+                    <td colspan="5" class="mse-label">
+                        Error del Modelo (MSE):
+                    </td>
+                    <td id="mse-table-display" class="mse-value">0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+        <div class="calculos-container">
+            <h3>4. Cálculos del Modelo</h3>
+
+            <div id="calculos-output" class="calculos-output">
+                <p>Ejecuta el modelo para ver los cálculos paso a paso.</p>
+                  <div class="step-info">
+            <strong>Análisis en Tiempo Real:</strong> <br>
+            A la espera de iniciar el entrenamiento. Ingresa puntos y presiona "Paso a Paso" para ver la matemática en acción.
+        </div>
+
+            </div>
+        </div>
+
+      
+    </section>
+    
+
+    <!-- Panel derecho: chat IA -->
+    <aside class="panel">
+        <h3>Asistente IA Educativo</h3>
+
+        <div class="chat-area"></div>
+
+        <div class="chat-input-group">
+            <input type="text" placeholder="Pregunta sobre el modelo...">
+            <button class="btn btn-step chat-send-btn">➔</button>
+        </div>
+
+        <div class="connection-status">
+            Conexión: <span id="status-dot">●</span> Activa (Ollama Local)
+        </div>
+    </aside>
+
+</main>
 <!-- Modal global de alertas -->
 <div id="appModal" class="app-modal hidden">
     <div class="app-modal-content">

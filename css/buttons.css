@@ -1,59 +1,103 @@
-/* Clase base compartida para todos los botones */
+/* ============================= */
+/* Botones generales */
+/* ============================= */
+
 .btn {
-    width: 100%; 
-    padding: 14px; 
+    width: 100%;
+    min-height: 44px;
+    padding: clamp(10px, 2vw, 14px) clamp(14px, 3vw, 20px);
     margin-top: 10px;
-    border: none; 
-    border-radius: 10px; 
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    font-weight: 600; 
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    font-size: 14px;
+    font-weight: 600;
+    font-size: clamp(14px, 2vw, 15px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Pequeña animación al hacer clic */
-.btn:active { 
-    transform: translateY(2px); 
+/* Animación al hacer clic */
+.btn:active {
+    transform: translateY(2px);
 }
 
-/* Botón Amarillo (Añadir Punto) */
-.btn-add { 
-    background-color: var(--umg-gold); 
-    color: #000; 
-    box-shadow: 0 4px 15px rgba(242, 169, 0, 0.3); 
-}
-.btn-add:hover { 
-    background-color: var(--umg-gold-hover); 
-    box-shadow: 0 6px 20px rgba(242, 169, 0, 0.4); 
+/* Accesibilidad al navegar con teclado */
+.btn:focus,
+.app-modal-btn:focus {
+    outline: 3px solid rgba(0, 43, 92, 0.25);
+    outline-offset: 2px;
 }
 
-/* Botón Azul (Ejecutar Paso a Paso) */
-.btn-step { 
-    background-color: var(--umg-blue); 
-    color: white; 
-    box-shadow: 0 4px 15px rgba(0, 43, 92, 0.2); 
-}
-.btn-step:hover { 
-    background-color: var(--umg-blue-light); 
-    box-shadow: 0 6px 20px rgba(0, 43, 92, 0.3); 
+/* ============================= */
+/* Botón Amarillo */
+/* ============================= */
+
+.btn-add {
+    background-color: var(--umg-gold);
+    color: #000;
+    box-shadow: 0 4px 15px rgba(242, 169, 0, 0.3);
 }
 
-/* Botón Verde (Ejecutar Modelo Completo) */
-.btn-full { 
-    background-color: var(--success); 
-    color: white; 
+.btn-add:hover {
+    background-color: var(--umg-gold-hover);
+    box-shadow: 0 6px 20px rgba(242, 169, 0, 0.4);
+}
+
+/* ============================= */
+/* Botón Azul */
+/* ============================= */
+
+.btn-step {
+    background-color: var(--umg-blue);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 43, 92, 0.2);
+}
+
+.btn-step:hover {
+    background-color: var(--umg-blue-light);
+    box-shadow: 0 6px 20px rgba(0, 43, 92, 0.3);
+}
+
+/* ============================= */
+/* Botón Verde */
+/* ============================= */
+
+.btn-full {
+    background-color: var(--success);
+    color: white;
     box-shadow: 0 4px 15px rgba(39, 174, 96, 0.2);
 }
+
 .btn-full:hover {
     background-color: #219653;
     box-shadow: 0 6px 20px rgba(39, 174, 96, 0.3);
 }
+
+/* ============================= */
+/* Grupo de botones responsive */
+/* ============================= */
+
+.btn-group {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+}
+
+/* En tablet o PC, los botones pueden acomodarse en columnas */
+@media (min-width: 768px) {
+    .btn-group {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    }
+}
+
 /* ============================= */
 /* Botón del Modal */
 /* ============================= */
 
 .app-modal-btn {
-    display: bllock;
+    display: block;
+    width: fit-content;
+    max-width: 100%;
     margin: 0 auto;
     background-color: var(--umg-blue);
     color: white;
@@ -68,7 +112,7 @@
 }
 
 .app-modal-btn:hover {
-    background-color: var(--bg-color);
+    background-color: var(--umg-blue-light);
     box-shadow: 0 6px 20px rgba(0, 43, 92, 0.3);
 }
 
